@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RM x LEGO - Moodboard Collage</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.5/dist/cdn.min.js"
+    defer
+  ></script>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #fff;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      padding: 1rem 2rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #e3000b;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 100;
+      background: white;
+    }
+    .logo {
+      cursor: default;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 1000;
+      font-size: 1.7rem;
+      color: #e3000b;
+      transform-origin: center bottom;
+      transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+    .logo.animate {
+      animation: lego-click 0.5s forwards;
+    }
+    @keyframes lego-click {
+      0%   { transform: scale(1) rotate(0deg); }
+      30%  { transform: scale(1.15) rotate(10deg); }
+      60%  { transform: scale(0.85) rotate(-8deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+
+    nav.desktop-menu {
+      display: flex;
+      gap: 1rem;
+    }
+    nav.desktop-menu button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #e3000b;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.5rem;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    nav.desktop-menu button:hover, nav.desktop-menu button.active {
+      background-color: #e3000b;
+      color: white;
+    }
+
+    @keyframes lego-attach {
+      0% {
+        transform: scale(0.75) rotate(-10deg);
+        opacity: 0;
+      }
+      40% {
+        transform: scale(1.1) rotate(5deg);
+        opacity: 1;
+      }
+      70% {
+        transform: scale(0.95) rotate(-3deg);
+      }
+      100% {
+        transform: scale(1) rotate(0deg);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav.desktop-menu {
+        display: none;
+      }
+    }
+    main {
+      flex-grow: 1;
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .moodboard {
+      width: 100%;
+      max-width: 600px;
+      background: #f5f5f5;
+      border-radius: 1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 0.5rem;
+      padding: 0.5rem;
+      user-select: none;
+    }
+    .moodboard img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 0.75rem;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .moodboard img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      z-index: 2;
+      position: relative;
+    }
+    .style-controls {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 1.5rem 0 1rem;
+    }
+    .chip {
+      padding: 0.5rem 1.5rem;
+      background: #ffd500;
+      color: #111;
+      font-weight: 700;
+      border-radius: 9999px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.3s, color 0.3s;
+      border: 2px solid transparent;
+    }
+    .chip:hover {
+      background: #e3000b;
+      color: white;
+    }
+    .chip.active {
+      background: #e3000b;
+      color: white;
+      border-color: #ffd500;
+    }
+    .description {
+      max-width: 600px;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #444;
+      margin-bottom: 2rem;
+      min-height: 3rem;
+    }
+    .lego-btn {
+      background: #e3000b;
+      color: white;
+      font-weight: 700;
+      border-radius: 9999px;
+      padding: 0.75rem 2rem;
+      cursor: pointer;
+      border: none;
+      transition: background 0.3s ease;
+      margin-bottom: 2rem;
+      user-select: none;
+    }
+    .lego-btn:hover {
+      background: #a00006;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem 2rem;
+      color: #888;
+      font-size: 0.9rem;
+      border-top: 1px solid #eee;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body
+  x-data="{
+    moodboards: {
+      look1: [
+        'file:///C:/Users/User/OneDrive%20-%20Universidad%20de%20Guayaquil/Universidad/6TO%20Semestre/DESARROLLO%20DE%20CONTENIDOS%20PARA%20MEDIOS%20DIGITALES/Trabajo%20grupal/FOTOS/5263426_166.png',
+        'file:///C:/Users/User/OneDrive%20-%20Universidad%20de%20Guayaquil/Universidad/6TO%20Semestre/DESARROLLO%20DE%20CONTENIDOS%20PARA%20MEDIOS%20DIGITALES/Trabajo%20grupal/FOTOS/D%C3%8DA%20DE%20LA%20COSTURERA%201.png',
+        'file:///C:/Users/User/OneDrive%20-%20Universidad%20de%20Guayaquil/Universidad/6TO%20Semestre/DESARROLLO%20DE%20CONTENIDOS%20PARA%20MEDIOS%20DIGITALES/Trabajo%20grupal/FOTOS/D%C3%8DA%20DE%20LA%20COSTURERA%202.png',
+        'file:///C:/Users/User/OneDrive%20-%20Universidad%20de%20Guayaquil/Universidad/6TO%20Semestre/DESARROLLO%20DE%20CONTENIDOS%20PARA%20MEDIOS%20DIGITALES/Trabajo%20grupal/FOTOS/D%C3%8DA%20DE%20LA%20COSTURERA%203.png',
+        'file:///C:/Users/User/OneDrive%20-%20Universidad%20de%20Guayaquil/Universidad/6TO%20Semestre/DESARROLLO%20DE%20CONTENIDOS%20PARA%20MEDIOS%20DIGITALES/Trabajo%20grupal/FOTOS/D%C3%8DA%20DEL%20ARTESANO%202.png',
+        'file:///C:/Users/User/OneDrive%20-%20Universidad%20de%20Guayaquil/Universidad/6TO%20Semestre/DESARROLLO%20DE%20CONTENIDOS%20PARA%20MEDIOS%20DIGITALES/Trabajo%20grupal/FOTOS/D%C3%8DA%20DEL%20ARTESANO%203.png'
+      ],
+      look2: [
+        'file:///C:/Users/User/OneDrive%20-%20Universidad%20de%20Guayaquil/Universidad/6TO%20Semestre/DESARROLLO%20DE%20CONTENIDOS%20PARA%20MEDIOS%20DIGITALES/Trabajo%20grupal/FOTOS/5263426_166.png',
+        'file:///C:/Users/User/OneDrive%20-%20Universidad%20de%20Guayaquil/Universidad/6TO%20Semestre/DESARROLLO%20DE%20CONTENIDOS%20PARA%20MEDIOS%20DIGITALES/Trabajo%20grupal/FOTOS/D%C3%8DA%20DE%20LA%20COSTURERA%201.png',
+        'file:///C:/Users/User/OneDrive%20-%20Universidad%20de%20Guayaquil/Universidad/6TO%20Semestre/DESARROLLO%20DE%20CONTENIDOS%20PARA%20MEDIOS%20DIGITALES/Trabajo%20grupal/FOTOS/D%C3%8DA%20DE%20LA%20COSTURERA%202.png',
+        'file:///C:/Users/User/OneDrive%20-%20Universidad%20de%20Guayaquil/Universidad/6TO%20Semestre/DESARROLLO%20DE%20CONTENIDOS%20PARA%20MEDIOS%20DIGITALES/Trabajo%20grupal/FOTOS/D%C3%8DA%20DE%20LA%20COSTURERA%203.png',
+        'file:///C:/Users/User/OneDrive%20-%20Universidad%20de%20Guayaquil/Universidad/6TO%20Semestre/DESARROLLO%20DE%20CONTENIDOS%20PARA%20MEDIOS%20DIGITALES/Trabajo%20grupal/FOTOS/D%C3%8DA%20DEL%20ARTESANO%202.png',
+        'file:///C:/Users/User/OneDrive%20-%20Universidad%20de%20Guayaquil/Universidad/6TO%20Semestre/DESARROLLO%20DE%20CONTENIDOS%20PARA%20MEDIOS%20DIGITALES/Trabajo%20grupal/FOTOS/D%C3%8DA%20DEL%20ARTESANO%203.png'
+      ]
+    },
+    outfit: 'look1',
+    styleDescriptions: {
+      look1: 'Moodboard con inspiración urbana y moderna.',
+      look2: 'Moodboard monocromático y elegante.'
+    },
+    downloadMoodboard() {
+      const moodboardEl = this.$refs.moodboard;
+      if (!moodboardEl) return;
+      html2canvas(moodboardEl).then((canvas) => {
+        const link = document.createElement('a');
+        link.download = `moodboard_${this.outfit}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    }
+  }"
+>
+  <header>
+    <div class="logo" aria-label="Logo RM x LEGO">RM x LEGO</div>
+    <nav
+      class="desktop-menu"
+      role="navigation"
+      aria-label="Menú principal"
+    >
+  </header>
+
+  <main>
+    <div
+      class="moodboard"
+      x-ref="moodboard"
+      aria-label="Moodboard de imágenes"
+      role="list"
+    >
+      <template x-for="img in moodboards[outfit]" :key="img">
+        <img :src="img" alt="Imagen moodboard" role="listitem" />
+      </template>
+    </div>
+
+    <div
+      class="style-controls"
+      role="list"
+      aria-label="Selector de moodboards"
+    >
+      <template x-for="(imgs, key) in moodboards" :key="key">
+        <div
+          role="listitem"
+          class="chip"
+          :class="{ active: outfit === key }"
+          @click="outfit = key"
+          tabindex="0"
+          @keydown.enter.prevent="outfit = key"
+          @keydown.space.prevent="outfit = key"
+        >
+          <span x-text="'Moodboard ' + (Object.keys(moodboards).indexOf(key) + 1)"></span>
+        </div>
+      </template>
+    </div>
+
+    <div class="description" x-text="styleDescriptions[outfit]"></div>
+
+    <button class="lego-btn" @click="downloadMoodboard()">
+      📥 Descargar Moodboard
+    </button>
+  </main>
+
+  <footer>
+    © 2025 RM. Todos los derechos reservados.
+  </footer>
+</body>
+</html>
